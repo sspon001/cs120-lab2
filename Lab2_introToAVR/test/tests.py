@@ -14,25 +14,23 @@
 # An example set of tests is shown below. It is important to note that these tests are not "unit tests" in 
 # that they are not ran in isolation but in the order shown and the state of the device is not reset or 
 # altered in between executions (unless preconditions are used).
-tests = [ {'description': '0 open spots',
-    'steps': [ {'inputs': [('PINA',0xF)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x8F)],
+
+
+tests = [ {'description': 'Normal',
+    'steps': [ {'inputs': [('PINA',0x32)], 'inputs': [('PINB',0x1E)], 'inputs': [('PINC',0x2D)], 'iterations': 5 } ],
+    'expected': [('PORTD',0x2B)],
+    }, 
+    {'description': 'Weight Exceeded',
+    'steps': [ {'inputs': [('PINA',0x5A)], 'inputs': [('PINB',0x5A)], 'inputs': [('PINC',0x6A)], 'iterations': 5 } ],
+    'expected': [('PORTD',0x6B)],
     },
-    {'description': '1 open spot',
-    'steps': [ {'inputs': [('PINA',0xB)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x01)],
+    {'description': 'Unbalanced',
+    'steps': [ {'inputs': [('PINA',0x6A)], 'inputs': [('PINB',0x00)], 'inputs': [('PINC',0x09)], 'iterations': 5 } ],
+    'expected': [('PORTD',0x07)],
     },
-    {'description': '2 open spots',
-    'steps': [ {'inputs': [('PINA',0x09)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x02)],
-    },
-    {'description': '3 open spots',
-    'steps': [ {'inputs': [('PINA',0x08)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x03)],
-    },
-    {'description': '4 open spots',
-    'steps': [ {'inputs': [('PINA',0x00)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x04)],
+    {'description': 'Weight Exceeded and Unbalanced',
+    'steps': [ {'inputs': [('PINA',0x6A)], 'inputs': [('PINB',0x8F)], 'inputs': [('PINC',0x09)], 'iterations': 5 } ],
+    'expected': [('PORTD',0x07)],
     },
     ]
 #watch = ['PORTB']

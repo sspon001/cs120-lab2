@@ -15,10 +15,13 @@
 int main(void) {
 	DDRA = 0x00 ; PORTA = 0xFF ;
 	DDRB = 0xFF ; PORTB = 0x00 ;
-	unsigned char temp_input = 0x00 ;
+	unsigned char doorOpen = 0x00 ;
+	unsigned char lightDetected = 0x00 ;
     while (1) {
-	temp_input = PINA ;
-	PORTB = temp_input ;
+	doorOpen = PINA & 0x01 ;
+	lightDetected = PINA & 0x02 ;
+	if(doorOpen & !lightDetected) PORTB = 0x01 ;
+	else PORTB = 0x00 ;
     }
-    return 1;
+    return 0 ;
 }

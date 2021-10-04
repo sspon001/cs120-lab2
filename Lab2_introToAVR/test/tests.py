@@ -16,7 +16,7 @@
 # altered in between executions (unless preconditions are used).
 tests = [ {'description': '0 open spots',
     'steps': [ {'inputs': [('PINA',0xF)], 'iterations': 5 } ],
-    'expected': [('PORTC',0x00)],
+    'expected': [('PORTC',0x8F)],
     },
     {'description': '1 open spot',
     'steps': [ {'inputs': [('PINA',0xB)], 'iterations': 5 } ],

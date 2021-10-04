@@ -22,7 +22,8 @@ int main(void) {
 	if(PINA & 0x02) cntavail -= 0x01 ;
 	if(PINA & 0x04) cntavail -= 0x01 ;
 	if(PINA & 0x08) cntavail -= 0x01 ;
-	PORTC = cntavail ;
+	PORTC = 0xF & cntavail ;
+	if(cntavail == 0x00) PORTC = 0x8F ;	
     }
     return 0 ;
 }
